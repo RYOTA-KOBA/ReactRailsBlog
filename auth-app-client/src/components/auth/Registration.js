@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios'
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const Registration = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const handleSuccessfulAuthentication = (data) => {
+    props.handleLogin(data);
+    props.history.push("/");
+  };
 
   const handleSubmit = (event) => {
     //追加
@@ -23,7 +30,7 @@ const Registration = (props) => {
       .then((response) => {
         console.log("registration res", response);
         if (response.data.status === "created") {
-          props.handleSuccessfulAuthentication(response.data);
+          handleSuccessfulAuthentication(response.data);
         }
       })
       .catch((error) => {
@@ -37,30 +44,40 @@ const Registration = (props) => {
       <p>新規登録</p>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          id="outlined-basic"
+          label="メールアドレス"
+          variant="outlined"
           type="email"
           name="email"
-          placeholder="メールアドレス"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <input
+        <TextField
+          id="outlined-basic"
+          label="パスワード"
+          variant="outlined"
           type="password"
           name="password"
-          placeholder="パスワード"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <input
+        <TextField
+          id="outlined-basic"
+          label="確認用パスワード"
+          variant="outlined"
           type="password"
           name="password_confirmation"
-          placeholder="確認用パスワード"
           value={passwordConfirmation}
           onChange={(event) => setPasswordConfirmation(event.target.value)}
         />
 
-        <button type="submit">登録</button>
+        <Button type="submit" variant="contained" color="primary">
+          登録
+        </Button>
       </form>
+
+      <a href="/login">ログインはこちら</a>
     </div>
   );
 };
