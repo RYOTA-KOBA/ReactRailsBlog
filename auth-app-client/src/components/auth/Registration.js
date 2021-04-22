@@ -6,6 +6,11 @@ const Registration = (props) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+  const handleSuccessfulAuthentication = (data) => {
+    props.handleLogin(data);
+    props.history.push("/");
+  };
+
   const handleSubmit = (event) => {
     //追加
     axios
@@ -23,7 +28,7 @@ const Registration = (props) => {
       .then((response) => {
         console.log("registration res", response);
         if (response.data.status === "created") {
-          props.handleSuccessfulAuthentication(response.data);
+          handleSuccessfulAuthentication(response.data);
         }
       })
       .catch((error) => {
@@ -61,6 +66,8 @@ const Registration = (props) => {
 
         <button type="submit">登録</button>
       </form>
+
+      <a href="/login">ログインはこちら</a>
     </div>
   );
 };

@@ -5,6 +5,11 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSuccessfulAuthentication = (data) => {
+    props.handleLogin(data);
+    props.history.push("/");
+  };
+
   const handleSubmit = (event) => {
     axios
       .post(
@@ -19,7 +24,7 @@ const Login = (props) => {
       )
       .then((response) => {
         if (response.data.logged_in) {
-            props.handleSuccessfulAuthentication(response.data);
+            handleSuccessfulAuthentication(response.data);
         }
       })
       .catch((error) => {
@@ -50,6 +55,7 @@ const Login = (props) => {
 
         <button type="submit">ログイン</button>
       </form>
+      <a href="/signup">新規会員登録はこちら</a>
     </div>
   );
 }

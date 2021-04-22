@@ -4,6 +4,8 @@ import axios from "axios";
 
 import Home from './components/Home'
 import Dashboard from './components/Dashboard'
+import Login from "./components/auth/Login";
+import Registration from "./components/auth/Registration";
 
 const App = () => {
 
@@ -51,6 +53,28 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Switch>
+          <Route
+            exact
+            path={"/login"}
+            render={(props) => (
+              <Login
+                {...props}
+                handleLogin={handleLogin}
+                loggedInStatus={loggedInStatus}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={"/signup"}
+            render={(props) => (
+              <Registration
+                {...props}
+                handleLogin={handleLogin}
+                loggedInStatus={loggedInStatus}
+              />
+            )}
+          />
           <Route
             exact
             path={"/"}
