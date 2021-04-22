@@ -19,7 +19,7 @@ const Login = (props) => {
       )
       .then((response) => {
         if (response.data.logged_in) {
-          props.handleSuccessfulAuthentication(response.data);
+            props.handleSuccessfulAuthentication(response.data);
         }
       })
       .catch((error) => {

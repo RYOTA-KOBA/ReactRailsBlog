@@ -11,7 +11,8 @@ const App = () => {
     const [user, setUser] = useState({});
 
       const handleLogin = (data) => {
-        setLoggedInStatus("ログインしてます");
+        setLoggedInStatus("ログインなう");
+        console.log('ログインステータス→' + loggedInStatus);
         setUser(data.user);
       };
 
@@ -23,22 +24,20 @@ const App = () => {
       const checkLoginStatus = () => {
         axios
           .get("http://localhost:3001/logged_in", { withCredentials: true })
+
           .then((response) => {
-            console.log("ログイン状況", response);
-            if (
-              response.data.logged_in &&
-              loggedInStatus === "未ログイン"
-            ) {
-              setLoggedInStatus("ログインしてます");
+            if (response.data.logged_in && loggedInStatus === "未ログイン") {
+              setLoggedInStatus("ログインなう");
               setUser(response.data.user);
             } else if (
               !response.data.logged_in &&
-              loggedInStatus === "ログインしてます"
+              loggedInStatus === "ログインなう"
             ) {
               setLoggedInStatus("未ログイン");
               setUser({});
             }
           })
+
           .catch((error) => {
             console.log("ログインエラー", error);
           });

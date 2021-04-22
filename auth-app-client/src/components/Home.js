@@ -9,6 +9,7 @@ import Login from "./auth/Login";
 const Home = (props) => {
 
     const handleSuccessfulAuthentication = (data) => {
+        props.handleLogin(data);
         props.history.push("/dashboard");
     };
 
