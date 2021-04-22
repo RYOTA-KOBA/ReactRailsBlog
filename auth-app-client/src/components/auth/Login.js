@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -38,22 +40,28 @@ const Login = (props) => {
       <p>ログイン</p>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          id="outlined-basic"
+          label="メールアドレス"
+          variant="outlined"
           type="email"
           name="email"
-          placeholder="メールアドレス"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <input
+        <TextField
+          id="outlined-basic"
+          label="パスワード"
+          variant="outlined"
           type="password"
           name="password"
-          placeholder="パスワード"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button type="submit">ログイン</button>
+        <Button type="submit" variant="contained" color="primary">
+          ログイン
+        </Button>
       </form>
       <a href="/signup">新規会員登録はこちら</a>
     </div>
