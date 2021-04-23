@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSuccessfulAuthentication = (data) => {
-    props.handleLogin(data);
-    props.history.push("/");
+    // props.handleLogin(data);
+    history.push("/");
   };
 
   const handleSubmit = (event) => {

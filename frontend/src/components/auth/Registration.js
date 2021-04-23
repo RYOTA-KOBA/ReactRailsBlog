@@ -1,16 +1,18 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+
 
 const Registration = (props) => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const handleSuccessfulAuthentication = (data) => {
-    props.handleLogin(data);
-    props.history.push("/");
+    history.push("/");
   };
 
   const handleSubmit = (event) => {
