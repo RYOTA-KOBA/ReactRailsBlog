@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
           setIsSignedIn(true);
           setCurrentUser(res.data.user);
           console.log("データ取得できました");
-          console.log(res.data.user);
+          // console.log(res.data.user);
         } else {
           history.push("/login");
         }
