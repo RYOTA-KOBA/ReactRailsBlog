@@ -25,6 +25,12 @@ const Home = (props) => {
     <div>
       <h1>Home</h1>
       {/* <h2>ログイン状態: {loggedInStatus}</h2> */}
+      {currentUser && (
+        <div>
+          <h3>{currentUser.email}</h3>
+          <h3>{currentUser.created_at}</h3>
+        </div>
+      )}
       <button onClick={handleLogoutClick}>ログアウト</button>
     </div>
   );
