@@ -8,4 +8,15 @@
 - 投稿作成機能
 
 ## 開発の際の注意点
+
+```
+$ cd frontend
+$ yarn start
+```
+
+```
+$ cd backend
+$ rails s
+```
+
 サーバー起動時に`yarn start`、`rails s`を使う際は、それぞれ`frontend`、`backend`のディレクトリに移動してから使う
