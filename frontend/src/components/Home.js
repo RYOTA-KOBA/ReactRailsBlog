@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-
+import "../assets/Home.css";
 import axios from "axios";
 
 const Home = (props) => {
@@ -23,14 +23,23 @@ const Home = (props) => {
 
   return (
     <div>
-      <h1>Home</h1>
-      {/* <h2>ログイン状態: {loggedInStatus}</h2> */}
-      {currentUser && (
-        <div>
-          <h3>{currentUser.email}</h3>
-          <h3>{currentUser.created_at}</h3>
+      <header>
+        <div className="header-inner">
+          <div className="header-left">
+            <p className="header-logo">LOGO</p>
+          </div>
+          <div className="header-right">
+            <p>
+              こんにちは
+              <span className="header-username">
+                {currentUser && currentUser.email}
+              </span>
+              さん
+            </p>
+          </div>
         </div>
-      )}
+      </header>
+      <h1>Home</h1>
       <button onClick={handleLogoutClick}>ログアウト</button>
     </div>
   );
