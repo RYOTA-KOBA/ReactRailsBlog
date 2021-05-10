@@ -1,0 +1,24 @@
+header {
+  background-color: rgb(174, 243, 243);
+}
+
+.header-inner {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.header-username {
+  color: red;
+}
+
+p {
+  margin: 0;
+}
