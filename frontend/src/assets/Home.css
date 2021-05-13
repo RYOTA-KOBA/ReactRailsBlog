@@ -16,7 +16,8 @@ header {
 }
 
 .header-username {
-  color: red;
+  font-weight: 600;
+  display: flex;
 }
 
 p {
