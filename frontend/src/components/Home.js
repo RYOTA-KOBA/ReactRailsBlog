@@ -29,6 +29,7 @@ const Home = (props) => {
       .then((response) => {
         history.push("/login");
         // props.handleLogout();
+        window.location.reload();
         console.log("ログアウトしました");
       })
       .catch((error) => console.log("ログアウトエラー", error));
