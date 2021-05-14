@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
 
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/auth/Login";
 import Registration from "./components/auth/Registration";
 import Auth from "./components/auth/Auth";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン");
+  const { currentUser } = useAuth();
+  // const uid = currentUser.id;
 
   const checkLoginStatus = () => {
     axios
@@ -46,6 +50,7 @@ const App = () => {
             <Auth>
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/dashboard"} component={Dashboard} />
+              <Route exact path={`/profile`} component={UserProfile} />
             </Auth>
           </Switch>
         </AuthProvider>
