@@ -35,6 +35,11 @@ const Home = (props) => {
       .catch((error) => console.log("ログアウトエラー", error));
   };
 
+  const handleOpenProfile = () => {
+    handleClose();
+    history.push("/profile");
+  };
+
   console.log(currentUser);
 
   return (
@@ -62,7 +67,7 @@ const Home = (props) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
               </Menu>
