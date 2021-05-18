@@ -44,7 +44,9 @@ const Header = () => {
       <header>
         <div className="header-inner">
           <div className="header-left">
-            <p className="header-logo">LOGO</p>
+            <a href="/" className="header-logo">
+              LOGO
+            </a>
           </div>
           <div className="header-right">
             <div>
