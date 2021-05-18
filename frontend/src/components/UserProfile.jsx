@@ -9,7 +9,7 @@ const UserProfile = () => {
     <>
       <Header />
       <div>
-        <h2>{currentUser && currentUser.email}</h2>
+        <h2>{currentUser && currentUser.username}</h2>
         <h2>{currentUser && currentUser.id}</h2>
       </div>
     </>
