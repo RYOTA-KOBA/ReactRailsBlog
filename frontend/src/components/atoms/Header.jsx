@@ -54,7 +54,7 @@ const Header = () => {
                 onClick={handleClick}
               >
                 <span className="header-username">
-                  {currentUser && currentUser.email} <ArrowDropDownIcon />
+                  {currentUser && currentUser.username} <ArrowDropDownIcon />
                 </span>
               </Button>
               <Menu
