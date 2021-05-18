@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from "react";
+import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 
-
 const Registration = (props) => {
   const history = useHistory();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -22,6 +22,7 @@ const Registration = (props) => {
         "http://localhost:3001/signup",
         {
           user: {
+            username: username,
             email: email,
             password: password,
             password_confirmation: passwordConfirmation,
@@ -46,6 +47,15 @@ const Registration = (props) => {
       <p>新規登録</p>
 
       <form onSubmit={handleSubmit}>
+        <TextField
+          id="outlined-basic"
+          label="名前"
+          variant="outlined"
+          type="name"
+          name="name"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
         <TextField
           id="outlined-basic"
           label="メールアドレス"
@@ -83,4 +93,4 @@ const Registration = (props) => {
     </div>
   );
 };
-export default Registration
+export default Registration;
