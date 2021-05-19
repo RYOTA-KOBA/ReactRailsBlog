@@ -1,0 +1,19 @@
+.profile-inner {
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+}
+.profile-inner h2 {
+  font-size: 20px;
+}
+.profile-img {
+  margin-right: 30px;
+}
+.profile-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+}
