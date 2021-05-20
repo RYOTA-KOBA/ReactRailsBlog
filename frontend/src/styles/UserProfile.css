@@ -1,7 +1,8 @@
 .profile-inner {
-  width: 80%;
+  width: 60%;
   margin: 50px auto;
   display: flex;
+  justify-content: space-between;
 }
 .profile-inner h2 {
   font-size: 20px;
