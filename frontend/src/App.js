@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import Registration from "./components/auth/Registration";
 import Auth from "./components/auth/Auth";
 import UserProfile from "./components/UserProfile";
+import ProfileEdit from "./components/ProfileEdit";
 
 const App = () => {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン");
@@ -51,6 +52,7 @@ const App = () => {
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/dashboard"} component={Dashboard} />
               <Route exact path={`/profile`} component={UserProfile} />
+              <Route exact path={`/profile/edit`} component={ProfileEdit} />
             </Auth>
           </Switch>
         </AuthProvider>
