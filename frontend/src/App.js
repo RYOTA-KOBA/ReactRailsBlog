@@ -14,8 +14,6 @@ import ProfileEdit from "./components/ProfileEdit";
 
 const App = () => {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン");
-  const { currentUser } = useAuth();
-  // const uid = currentUser.id;
 
   const checkLoginStatus = () => {
     axios
@@ -52,7 +50,7 @@ const App = () => {
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/dashboard"} component={Dashboard} />
               <Route exact path={`/profile`} component={UserProfile} />
-              <Route exact path={`/profile/edit`} component={ProfileEdit} />
+              <Route exact path={`/profile/:id/edit`} component={ProfileEdit} />
             </Auth>
           </Switch>
         </AuthProvider>
