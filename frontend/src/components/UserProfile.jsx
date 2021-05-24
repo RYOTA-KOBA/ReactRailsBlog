@@ -9,11 +9,13 @@ import Button from "@material-ui/core/Button";
 
 const UserProfile = () => {
   const { currentUser } = useAuth();
-  const uid = currentUser.id;
   const history = useHistory();
 
   const handleClickProfileEdit = () => {
-    history.push(`/profile/${uid}/edit`);
+    if (currentUser) {
+      const uid = currentUser.id;
+      history.push(`/profile/${uid}/edit`);
+    }
   };
 
   return (
