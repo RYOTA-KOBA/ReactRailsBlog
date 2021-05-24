@@ -35,8 +35,9 @@ const Header = () => {
   };
 
   const handleOpenProfile = () => {
+    const uid = currentUser.id;
     handleClose();
-    history.push("/profile");
+    history.push(`/profile/${uid}`);
   };
 
   return (
