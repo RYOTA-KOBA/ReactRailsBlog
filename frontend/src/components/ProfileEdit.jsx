@@ -3,15 +3,32 @@ import { useAuth } from "../contexts/AuthContext";
 import "../styles/ProfileEdit.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
 
 const ProfileEdit = () => {
   const { currentUser } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const uid = currentUser.id;
+  // const uid = currentUser.id;
 
   const handleSubmit = () => {
-    console.log("submit");
+    axios
+      .post(
+        "http://localhost:3001/users/update",
+        {
+          user: {
+            username: username,
+            email: email,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log("編集が成功しました");
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
   };
 
   useEffect(() => {
@@ -50,9 +67,9 @@ const ProfileEdit = () => {
           </Button>
         </div>
       </form>
-      <a className="cancel-edit-link" href={currentUser && `/profile/${uid}`}>
+      {/* <a className="cancel-edit-link" href={currentUser && `/profile/${uid}`}>
         変更をキャンセル
-      </a>
+      </a> */}
     </div>
   );
 };
