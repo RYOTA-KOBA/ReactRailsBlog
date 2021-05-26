@@ -11,10 +11,12 @@ const ProfileEdit = () => {
   const [email, setEmail] = useState("");
   // const uid = currentUser.id;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     axios
-      .post(
-        "http://localhost:3001/users/update",
+      .put(
+        "http://localhost:3001/users",
         {
           user: {
             username: username,
