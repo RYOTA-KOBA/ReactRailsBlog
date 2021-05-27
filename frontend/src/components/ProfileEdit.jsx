@@ -9,7 +9,6 @@ const ProfileEdit = () => {
   const { currentUser } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  // const uid = currentUser.id;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +18,7 @@ const ProfileEdit = () => {
         "http://localhost:3001/users",
         {
           user: {
+            id: currentUser.id,
             username: username,
             email: email,
           },

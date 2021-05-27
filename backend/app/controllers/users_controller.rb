@@ -4,9 +4,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        # @user = User.find(params[:id])
-        logger.debug(user_params)
-        # logger.debug(@user)
+        @user = User.find(params[:user][:id])
         if @user.update(user_params)
             render json: { status: 'SUCCESS', message: 'Updated the user', data: @user }
           else
