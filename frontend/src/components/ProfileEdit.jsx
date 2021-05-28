@@ -4,11 +4,13 @@ import "../styles/ProfileEdit.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const ProfileEdit = () => {
   const { currentUser } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +28,8 @@ const ProfileEdit = () => {
         { withCredentials: true }
       )
       .then((response) => {
+        history.push("/");
+        window.location.reload();
         console.log("編集が成功しました");
       })
       .catch((error) => {
