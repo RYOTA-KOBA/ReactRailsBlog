@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
 
-const Login = (props) => {
+const Login: React.FC = () => {
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSuccessfulAuthentication = (data) => {
-    // props.handleLogin(data);
-    history.push("/");
+  const handleSuccessfulAuthentication = () => {
+    history.push('/');
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     axios
       .post(
-        "http://localhost:3001/login",
+        'http://localhost:3001/login',
         {
           user: {
             email: email,
@@ -28,11 +27,11 @@ const Login = (props) => {
       )
       .then((response) => {
         if (response.data.logged_in) {
-            handleSuccessfulAuthentication(response.data);
+          handleSuccessfulAuthentication();
         }
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log('registration error', error);
       });
     event.preventDefault();
   };
@@ -49,7 +48,9 @@ const Login = (props) => {
           type="email"
           name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(event.target.value)
+          }
         />
         <TextField
           id="outlined-basic"
@@ -58,7 +59,9 @@ const Login = (props) => {
           type="password"
           name="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(event.target.value)
+          }
         />
 
         <Button type="submit" variant="contained" color="primary">
@@ -68,5 +71,5 @@ const Login = (props) => {
       <a href="/signup">新規会員登録はこちら</a>
     </div>
   );
-}
+};
 export default Login;
