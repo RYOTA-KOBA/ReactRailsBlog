@@ -1,7 +1,7 @@
-import React from "react";
-import Header from "./atoms/Header";
+import React from 'react';
+import Header from './atoms/Header';
 
-const Home = (props) => {
+const Home: React.FC = () => {
   return (
     <div>
       <Header />
