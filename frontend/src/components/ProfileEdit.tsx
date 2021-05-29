@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import "../styles/ProfileEdit.css";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import '../styles/ProfileEdit.css';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-const ProfileEdit = () => {
-  const { currentUser } = useAuth();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+const ProfileEdit: React.FC = () => {
+  const { currentUser }: any = useAuth();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
       .put(
-        "http://localhost:3001/users",
+        'http://localhost:3001/users',
         {
           user: {
             id: currentUser.id,
@@ -28,12 +28,12 @@ const ProfileEdit = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        history.push("/");
+        history.push('/');
         window.location.reload();
-        console.log("編集が成功しました");
+        console.log('編集が成功しました');
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log('registration error', error);
       });
   };
 
@@ -54,9 +54,11 @@ const ProfileEdit = () => {
             variant="outlined"
             type="name"
             name="name"
-            style={{ marginBottom: "20px" }}
+            style={{ marginBottom: '20px' }}
             value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setUsername(event.target.value)
+            }
           />
           <TextField
             id="outlined-basic"
@@ -64,9 +66,11 @@ const ProfileEdit = () => {
             variant="outlined"
             type="email"
             name="email"
-            style={{ marginBottom: "20px" }}
+            style={{ marginBottom: '20px' }}
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(event.target.value)
+            }
           />
           <Button type="submit" variant="contained" color="primary">
             変更

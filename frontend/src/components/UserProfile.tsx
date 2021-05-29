@@ -1,14 +1,14 @@
-import React from "react";
-import Header from "./atoms/Header";
-import { useAuth } from "../contexts/AuthContext";
-import "../styles/UserProfile.css";
-import imgurl from "../assets/man.jpg";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import Header from './atoms/Header';
+import { useAuth } from '../contexts/AuthContext';
+import '../styles/UserProfile.css';
+import imgurl from '../assets/man.jpg';
+import { useHistory } from 'react-router-dom';
 
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
-const UserProfile = () => {
-  const { currentUser } = useAuth();
+const UserProfile: React.FC = () => {
+  const { currentUser }: any = useAuth();
   const history = useHistory();
 
   const handleClickProfileEdit = () => {
@@ -35,8 +35,7 @@ const UserProfile = () => {
           <Button
             className="profile-edit-btn"
             variant="contained"
-            onClick={handleClickProfileEdit}
-          >
+            onClick={handleClickProfileEdit}>
             ユーザー情報の変更
           </Button>
         </div>

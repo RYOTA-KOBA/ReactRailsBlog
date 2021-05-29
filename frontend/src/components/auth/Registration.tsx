@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
 
-const Registration = (props) => {
+const Registration: React.FC = () => {
   const history = useHistory();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-  const handleSuccessfulAuthentication = (data) => {
-    history.push("/");
+  const handleSuccessfulAuthentication = () => {
+    history.push('/');
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //追加
     axios
       .post(
-        "http://localhost:3001/signup",
+        'http://localhost:3001/signup',
         {
           user: {
             username: username,
@@ -31,13 +31,13 @@ const Registration = (props) => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("registration res", response);
-        if (response.data.status === "created") {
-          handleSuccessfulAuthentication(response.data);
+        console.log('registration res', response);
+        if (response.data.status === 'created') {
+          handleSuccessfulAuthentication();
         }
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log('registration error', error);
       });
     event.preventDefault();
   };
@@ -54,7 +54,9 @@ const Registration = (props) => {
           type="name"
           name="name"
           value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setUsername(event.target.value)
+          }
         />
         <TextField
           id="outlined-basic"
@@ -63,7 +65,9 @@ const Registration = (props) => {
           type="email"
           name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(event.target.value)
+          }
         />
         <TextField
           id="outlined-basic"
@@ -72,7 +76,9 @@ const Registration = (props) => {
           type="password"
           name="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(event.target.value)
+          }
         />
         <TextField
           id="outlined-basic"
@@ -81,7 +87,9 @@ const Registration = (props) => {
           type="password"
           name="password_confirmation"
           value={passwordConfirmation}
-          onChange={(event) => setPasswordConfirmation(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setPasswordConfirmation(event.target.value)
+          }
         />
 
         <Button type="submit" variant="contained" color="primary">
