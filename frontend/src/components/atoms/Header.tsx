@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-import "../../styles/Home.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import '../../styles/Home.css';
 
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const Header = () => {
+const Header: React.FC = () => {
   const history = useHistory();
-  const { currentUser } = useAuth();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const { currentUser }: any = useAuth();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -24,14 +24,13 @@ const Header = () => {
 
   const handleLogoutClick = () => {
     axios
-      .delete("http://localhost:3001/logout", { withCredentials: true })
+      .delete('http://localhost:3001/logout', { withCredentials: true })
       .then((response) => {
-        history.push("/login");
-        // props.handleLogout();
+        history.push('/login');
         window.location.reload();
-        console.log("ログアウトしました");
+        console.log('ログアウトしました');
       })
-      .catch((error) => console.log("ログアウトエラー", error));
+      .catch((error) => console.log('ログアウトエラー', error));
   };
 
   const handleOpenProfile = () => {
@@ -54,8 +53,7 @@ const Header = () => {
               <Button
                 aria-controls="simple-menu"
                 aria-haspopup="true"
-                onClick={handleClick}
-              >
+                onClick={handleClick}>
                 <span className="header-username">
                   {currentUser && currentUser.username} <ArrowDropDownIcon />
                 </span>
@@ -65,8 +63,7 @@ const Header = () => {
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
+                onClose={handleClose}>
                 <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
