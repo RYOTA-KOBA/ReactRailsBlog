@@ -1,0 +1,19 @@
+.post-form-h2 {
+  text-align: center;
+}
+.post-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: auto;
+}
+.post-form-textfield {
+  margin-bottom: 20px;
+}
+.post-form-btn {
+  margin-top: 30px;
+}
+.post-form-cancel {
+  text-align: center;
+  margin-top: 30px;
+}
