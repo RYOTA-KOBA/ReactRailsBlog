@@ -11,8 +11,9 @@ import Registration from './components/auth/Registration';
 import Auth from './components/auth/Auth';
 import UserProfile from './components/UserProfile';
 import ProfileEdit from './components/ProfileEdit';
+import PostForm from './components/PostForm';
 
-const App = () => {
+const App: React.FC = () => {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン');
 
   const checkLoginStatus = () => {
@@ -51,6 +52,7 @@ const App = () => {
               <Route exact path={'/dashboard'} component={Dashboard} />
               <Route exact path={'/profile/:id'} component={UserProfile} />
               <Route exact path={'/profile/:id/edit'} component={ProfileEdit} />
+              <Route exact path={'/post-form'} component={PostForm} />
             </Auth>
           </Switch>
         </AuthProvider>
