@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#logout'
   get '/logged_in', to: 'sessions#logged_in?'
   resource :users, only: [:edit, :update]
+  resources :posts, only: [:index]
 end
