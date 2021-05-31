@@ -12,6 +12,7 @@ import Auth from './components/auth/Auth';
 import UserProfile from './components/UserProfile';
 import ProfileEdit from './components/ProfileEdit';
 import PostForm from './components/PostForm';
+import Posts from './components/posts/Posts';
 
 const App: React.FC = () => {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン');
@@ -53,6 +54,7 @@ const App: React.FC = () => {
               <Route exact path={'/profile/:id'} component={UserProfile} />
               <Route exact path={'/profile/:id/edit'} component={ProfileEdit} />
               <Route exact path={'/post-form'} component={PostForm} />
+              <Route exact path={'/posts'} component={Posts} />
             </Auth>
           </Switch>
         </AuthProvider>
