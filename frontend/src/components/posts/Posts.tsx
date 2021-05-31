@@ -8,8 +8,10 @@ const Posts: React.FC = () => {
   useEffect(() => {
     axios
       .get('http://localhost:3001/posts', {
-        headers: { 'Content-Type': 'application/json' },
-        data: {},
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
       })
       .then((res) => {
         console.log('投稿取得!!');
