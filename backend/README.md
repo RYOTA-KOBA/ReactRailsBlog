@@ -1,5 +1,12 @@
 ## これはバックエンド用のリポジトリです。
 
+開発の際は
+
+```
+$ cd backend
+$ rails s
+```
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
