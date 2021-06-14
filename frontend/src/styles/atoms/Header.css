@@ -1,0 +1,5 @@
+.header-right-inner {
+  width: 120%;
+  display: flex;
+  justify-content: space-around;
+}

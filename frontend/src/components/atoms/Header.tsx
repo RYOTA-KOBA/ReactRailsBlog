@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/Home.css';
+import '../../styles/atoms/Header.css';
 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -12,7 +13,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 const Header: React.FC = () => {
   const history = useHistory();
   const { currentUser }: any = useAuth();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -20,6 +21,10 @@ const Header: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handlePostClick = () => {
+    history.push('/post-form');
   };
 
   const handleLogoutClick = () => {
@@ -49,7 +54,13 @@ const Header: React.FC = () => {
             </a>
           </div>
           <div className="header-right">
-            <div>
+            <div className="header-right-inner">
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={handlePostClick}>
+                投稿
+              </Button>
               <Button
                 aria-controls="simple-menu"
                 aria-haspopup="true"
