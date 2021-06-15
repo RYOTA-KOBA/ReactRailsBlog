@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from './atoms/Header';
+import Posts from '../components/posts/Posts';
 
 const Home: React.FC = () => {
   return (
     <div>
       <Header />
-      <h1>Home</h1>
+      <Posts />
     </div>
   );
 };
