@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/PostForm.css';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -7,10 +9,30 @@ import Button from '@material-ui/core/Button';
 const PostForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const history = useHistory();
 
   const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('投稿しました');
+
+    axios
+      .post(
+        'http://localhost:3001/posts',
+        {
+          post: {
+            title: title,
+            content: content,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        history.push('/');
+        window.location.reload();
+        console.log('postの投稿が成功しました');
+      })
+      .catch((error) => {
+        console.log('registration error', error);
+      });
   };
 
   return (
