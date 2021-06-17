@@ -31,8 +31,16 @@ type D = {
   updated_at: number;
 };
 
+type P = {
+  title: string;
+  content: string;
+  id: string;
+  created_at: string;
+  updated_at: string;
+};
+
 const Posts: React.FC = () => {
-  const [postsData, setPostsData] = useState([]);
+  const [postsData, setPostsData] = useState<P[]>([]);
   const classes = useStyles();
 
   useEffect(() => {
@@ -44,7 +52,26 @@ const Posts: React.FC = () => {
         withCredentials: true,
       })
       .then((res) => {
-        setPostsData(res.data);
+        const posts: P[] = [];
+        res.data.forEach((d: D) => {
+          const date = new Date(d.created_at);
+          const Day = date.toLocaleDateString('ja-JP');
+          const Time = date.toLocaleTimeString('ja-JP');
+
+          //仮置き。後で関数にする
+          const date2 = new Date(d.updated_at);
+          const Day2 = date2.toLocaleDateString('ja-JP');
+          const Time2 = date.toLocaleTimeString('ja-JP');
+
+          posts.push({
+            title: d.title,
+            content: d.content,
+            id: d.id,
+            created_at: Day + ' ' + Time,
+            updated_at: Day2 + ' ' + Time2,
+          });
+        });
+        setPostsData(posts);
       })
       .catch((error) => {
         console.log('registration error', error);
@@ -55,14 +82,14 @@ const Posts: React.FC = () => {
     <div>
       <h1>こんにちは</h1>
       {postsData &&
-        postsData.map((data: D) => (
+        postsData.map((data: P) => (
           <Card className="post-card" variant="outlined" key={data.id}>
             <CardContent>
               <Typography variant="h5" component="h2">
                 {data.title}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
-                adjective
+                {data.created_at}
               </Typography>
               <Typography variant="body2" component="p">
                 {data.content}
