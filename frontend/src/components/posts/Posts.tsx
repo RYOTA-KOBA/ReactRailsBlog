@@ -29,6 +29,7 @@ type D = {
   title: string;
   created_at: number;
   updated_at: number;
+  uid: number;
 };
 
 type P = {
@@ -62,6 +63,8 @@ const Posts: React.FC = () => {
           const date2 = new Date(d.updated_at);
           const Day2 = date2.toLocaleDateString('ja-JP');
           const Time2 = date.toLocaleTimeString('ja-JP');
+
+          //uidからaxiosでusersにアクセスしてusernameを取得しpostsのスキーマに持たせる
 
           posts.push({
             title: d.title,
