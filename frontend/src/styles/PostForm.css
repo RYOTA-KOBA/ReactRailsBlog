@@ -8,10 +8,10 @@
   margin: auto;
 }
 .post-form-textfield {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 .post-form-btn {
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 .post-form-cancel {
   text-align: center;
