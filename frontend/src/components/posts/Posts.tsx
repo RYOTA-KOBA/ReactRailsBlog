@@ -8,8 +8,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 const useStyles = makeStyles({
+  root: {
+    width: 500,
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -43,6 +48,7 @@ type P = {
 const Posts: React.FC = () => {
   const [postsData, setPostsData] = useState<P[]>([]);
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
   useEffect(() => {
     axios
@@ -82,8 +88,23 @@ const Posts: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>こんにちは</h1>
+    <div className="posts-wrapper">
+      <div className="posts-header">
+        <h1>Posts</h1>
+        <div className="posts-sort-btn-wrapper">
+          <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            showLabels
+            className={classes.root}>
+            <BottomNavigationAction label="Recents" />
+            <BottomNavigationAction label="Favorites" />
+            <BottomNavigationAction label="Nearby" />
+          </BottomNavigation>
+        </div>
+      </div>
       {postsData &&
         postsData.map((data: P) => (
           <Card className="post-card" variant="outlined" key={data.id}>
