@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import ReplayIcon from '@material-ui/icons/Replay';
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +27,8 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+    alignItems: 'center',
+    display: 'flex',
   },
 });
 
@@ -113,6 +117,7 @@ const Posts: React.FC = () => {
                 {data.title}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
+                <EventAvailableIcon style={{ fontSize: '1.3rem' }} />
                 {data.created_at}
               </Typography>
               <Typography variant="body2" component="p">
