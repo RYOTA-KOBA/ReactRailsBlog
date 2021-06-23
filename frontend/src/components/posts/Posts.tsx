@@ -26,7 +26,6 @@ const useStyles = makeStyles({
     fontSize: 14,
   },
   pos: {
-    marginBottom: 12,
     alignItems: 'center',
     display: 'flex',
   },
@@ -120,6 +119,12 @@ const Posts: React.FC = () => {
                 <EventAvailableIcon style={{ fontSize: '1.3rem' }} />
                 {data.created_at}
               </Typography>
+              {data.created_at !== data.updated_at && (
+                <Typography className={classes.pos} color="textSecondary">
+                  <ReplayIcon style={{ fontSize: '1.3rem' }} />
+                  {data.updated_at}
+                </Typography>
+              )}
               <Typography variant="body2" component="p">
                 {data.content}
               </Typography>
