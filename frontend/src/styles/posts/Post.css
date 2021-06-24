@@ -3,6 +3,14 @@
   min-width: 275px;
   margin: 10px auto;
 }
+.post-card-head {
+  display: flex;
+  justify-content: space-between;
+}
+.post-card-head-title {
+  display: flex;
+  align-items: center;
+}
 .posts-wrapper {
   width: 80%;
   margin: 50px auto;

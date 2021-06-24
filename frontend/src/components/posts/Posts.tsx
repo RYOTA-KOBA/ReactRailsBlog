@@ -12,6 +12,29 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import ReplayIcon from '@material-ui/icons/Replay';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+const options = [
+  'None',
+  'Atria',
+  'Callisto',
+  'Dione',
+  'Ganymede',
+  'Hangouts Call',
+  'Luna',
+  'Oberon',
+  'Phobos',
+  'Pyxis',
+  'Sedna',
+  'Titania',
+  'Triton',
+  'Umbriel',
+];
+
+const ITEM_HEIGHT = 48;
 
 const useStyles = makeStyles({
   root: {
@@ -52,6 +75,16 @@ const Posts: React.FC = () => {
   const [postsData, setPostsData] = useState<P[]>([]);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     axios
@@ -112,9 +145,42 @@ const Posts: React.FC = () => {
         postsData.map((data: P) => (
           <Card className="post-card" variant="outlined" key={data.id}>
             <CardContent>
-              <Typography variant="h5" component="h2">
-                {data.title}
-              </Typography>
+              <div className="post-card-head">
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  className="post-card-head-title">
+                  {data.title}
+                </Typography>
+                <IconButton
+                  aria-label="more"
+                  aria-controls="long-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}>
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="long-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    style: {
+                      maxHeight: ITEM_HEIGHT * 4.5,
+                      width: '20ch',
+                    },
+                  }}>
+                  {options.map((option) => (
+                    <MenuItem
+                      key={option}
+                      selected={option === 'Pyxis'}
+                      onClick={handleClose}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </div>
               <Typography className={classes.pos} color="textSecondary">
                 <EventAvailableIcon style={{ fontSize: '1.3rem' }} />
                 {data.created_at}
