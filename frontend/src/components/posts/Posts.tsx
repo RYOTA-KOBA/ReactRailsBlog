@@ -17,23 +17,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
-
 const ITEM_HEIGHT = 48;
 
 const useStyles = makeStyles({
@@ -84,6 +67,14 @@ const Posts: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleDelete = () => {
+    handleClose();
+    // const id =
+    axios.delete(`http://localhost:3001/posts/${id}`).then((res) => {
+      console.log('削除完了');
+    });
   };
 
   useEffect(() => {
@@ -171,14 +162,8 @@ const Posts: React.FC = () => {
                       width: '20ch',
                     },
                   }}>
-                  {options.map((option) => (
-                    <MenuItem
-                      key={option}
-                      selected={option === 'Pyxis'}
-                      onClick={handleClose}>
-                      {option}
-                    </MenuItem>
-                  ))}
+                  <MenuItem onClick={handleClose}>編集</MenuItem>
+                  <MenuItem onClick={handleDelete}>削除</MenuItem>
                 </Menu>
               </div>
               <Typography className={classes.pos} color="textSecondary">
