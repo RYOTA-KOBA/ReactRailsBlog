@@ -10,6 +10,12 @@ class PostsController < ApplicationController
         @post.save
         redirect_to action: 'index'
     end
+
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+        redirect_to action: 'index'
+    end
       
     private
 
