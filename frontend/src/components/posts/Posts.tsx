@@ -69,12 +69,12 @@ const Posts: React.FC = () => {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id: string) => {
     handleClose();
-    // const id =
-    axios.delete(`http://localhost:3001/posts/${id}`).then((res) => {
-      console.log('削除完了');
-    });
+    console.log(id);
+    // axios.delete(`http://localhost:3001/posts/${id}`).then((res) => {
+    //   console.log('削除完了');
+    // });
   };
 
   useEffect(() => {
@@ -150,6 +150,7 @@ const Posts: React.FC = () => {
                   onClick={handleClick}>
                   <MoreVertIcon />
                 </IconButton>
+                <h2>{data.id}</h2>
                 <Menu
                   id="long-menu"
                   anchorEl={anchorEl}
@@ -163,7 +164,9 @@ const Posts: React.FC = () => {
                     },
                   }}>
                   <MenuItem onClick={handleClose}>編集</MenuItem>
-                  <MenuItem onClick={handleDelete}>削除</MenuItem>
+                  <MenuItem onClick={() => handleDelete(data.id)}>
+                    削除
+                  </MenuItem>
                 </Menu>
               </div>
               <Typography className={classes.pos} color="textSecondary">
