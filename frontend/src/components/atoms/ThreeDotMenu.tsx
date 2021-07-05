@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,6 +17,7 @@ type P = {
 const ThreeDotMenu = (props: P) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,10 +29,17 @@ const ThreeDotMenu = (props: P) => {
 
   const handleDelete = (id: string) => {
     handleClose();
-    console.log(id);
-    // axios.delete(`http://localhost:3001/posts/${id}`).then((res) => {
-    //   console.log('削除完了');
-    // });
+    axios
+      .delete(`http://localhost:3001/posts/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      });
   };
 
   return (
